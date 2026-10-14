@@ -27,12 +27,12 @@ Your bankroll, stats and settings are saved in the browser.
 | --- | --- | --- |
 | Blackjack | 1, 2, 6 or 8 decks; dealer stands or hits soft 17; 3:2 or 6:5; double, split to four hands, double after split, late surrender, insurance; basic-strategy coach; Hi-Lo card count trainer | about 0.3–2% depending on the rules |
 | Texas Hold'em | No-limit, 1–5 computer opponents with ten different styles, three skill levels, four stakes, side pots, equity and pot-odds helper, hand history | none (no rake) |
-| Roulette | European, American, and la partage; every inside and outside bet including splits, streets, corners, six lines, trios, first four and top line; animated wheel | 1.35–7.89% |
+| Roulette | European, American, and la partage; every inside and outside bet including splits, streets, corners, six lines, trios, first four and top line; a spinning wheel where the ball runs the track, drops and rattles into its pocket | 1.35–7.89% |
 | Craps | Pass, don't pass, come, don't come, odds and lay odds (1× to 100×), place bets, field, hardways and one-roll props | 0–16.67% |
 | Baccarat | Punto banco from an 8-deck shoe with full drawing rules, pair bets, bead plate and big road | 1.06–14.36% |
 | Video Poker | Jacks or Better 9/6, Bonus Poker 8/5, Double Double Bonus 9/6, Deuces Wild (Not So Ugly Ducks); exact best-hold coach | 0.27–1.02% with perfect play |
 | Three Card Poker | Ante/Play with ante bonus, Pair Plus (1-4-6-30-40), Q-6-4 coach | 3.37% (ante), 2.32% (pair plus) |
-| Slots | Three weighted reels with a wild star; exact return shown | 6.00–6.41% |
+| Slots | Five one-armed bandits: Lucky Strip, Fruit Fiesta, Pharaoh's Gold, Deep Blue and Cosmic Cadet. Each has its own symbols, cabinet and marquee lights, and a lever you can pull. All five share the same weighted reels, wild symbol and paytable, and the exact return is shown | 6.00–6.41% |
 | Keno | Pick 1–10 of 80 numbers; exact odds and return for every spot count | 6.4–12.5% |
 
 Also on the floor:
@@ -41,8 +41,20 @@ Also on the floor:
   the house edge predicts for the bets you actually made.
 - **Strategy coach** in every game where strategy matters, with warnings when
   a play costs you money. It can be turned off.
-- **Settings:** light, dark or automatic theme; six felt colours; six card
-  backs; a four-colour deck; dealing speed; sounds.
+- **Two ways to see the table:** sit at it, with the felt tipped away from you
+  like a real table, or look straight down from above. Switch with the
+  Seated / Overhead button at the top of any table game.
+- **Real chip stacks:** bets are stacked the way a dealer would: the biggest
+  chips at the bottom, each chip with its edge inserts showing, and the stack
+  slightly out of true.
+- **Make the table yours:** twelve felt colours or any colour you like; four
+  felt finishes (cloth, woven, printed, smooth); six rails in wood or padded
+  leather; card backs in ten colours or your own, seven patterns (lattice,
+  diamonds, scroll, sunburst, stripes, dots, plain), a white, gold or no
+  border, and your own monogram of up to three letters. A live preview shows
+  the result.
+- **Settings:** light, dark or automatic theme; a four-colour deck; dealing
+  speed; sounds.
 - **Keyboard:** Space deals, spins or rolls in every game; blackjack uses
   H S D P R; video poker 1–5; Three Card Poker P and F; Hold'em F C R.
 

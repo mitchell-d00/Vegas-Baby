@@ -150,8 +150,8 @@ header.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding-
 .rack button svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
 .rack button.on{transform:translateY(-4px);box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--accent)}
 .rack button:disabled{opacity:.3;cursor:not-allowed}
-.stack{position:relative;width:var(--chip,34px);height:calc(var(--chip,34px) + var(--h,0px));pointer-events:none}
-.stack svg{position:absolute;left:0;width:var(--chip,34px);height:var(--chip,34px);filter:drop-shadow(0 1.5px 1px rgba(0,0,0,.45))}
+.stack{position:relative;width:var(--chip,34px);pointer-events:none}
+.stack svg{display:block;width:var(--chip,34px);height:auto;overflow:visible}
 .stack .amt{position:absolute;left:50%;top:100%;transform:translate(-50%,2px);font-family:var(--mono);font-size:.72rem;font-weight:600;background:rgba(0,0,0,.6);color:#fff;padding:0 .35rem;border-radius:99px;white-space:nowrap}
 
 /* ---------- Cards ---------- */
@@ -207,6 +207,29 @@ table.pay td.r,table.pay th.r{text-align:right;font-family:var(--mono);font-vari
 .swatches{display:flex;gap:8px;flex-wrap:wrap}
 .swatch{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);padding:0}
 .swatch.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--accent)}
+.swatch.custom{position:relative;overflow:hidden;background:conic-gradient(#e33,#ee3,#3e3,#3ee,#33e,#e3e,#e33);display:inline-block;cursor:pointer}
+.swatch.custom input{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);opacity:0;cursor:pointer;border:0;padding:0}
+.pills{display:flex;flex-wrap:wrap;gap:4px;max-width:100%}
+.pills button{border:1px solid var(--line);background:var(--well);border-radius:99px;padding:.32rem .7rem;font-weight:700;font-size:.82rem;color:var(--muted)}
+.pills button.on{background:var(--panel);color:var(--ink);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.txt{width:5.5rem;padding:.42rem .6rem;border:1px solid var(--line);border-radius:9px;background:var(--well);font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center}
+.setsec h3{font-size:1.1rem;border-top:1px solid var(--line);padding-top:12px}
+.custprev{display:flex;justify-content:center}
+.minifelt{min-height:0;width:min(100%,360px);height:118px;padding:18px 26px;border-radius:60px 60px 20px 20px;display:flex;align-items:center;justify-content:center;gap:14px}
+.minifelt .pcard{--cw:54px}
+/* felt finishes */
+:root[data-felttex="cloth"] .felt::after{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .11 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+:root[data-felttex="woven"] .felt::after{background:repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px),repeating-linear-gradient(-45deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .11 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+:root[data-felttex="printed"] .felt::after{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><path d='M60 0 L120 60 L60 120 L0 60Z' fill='none' stroke='white' stroke-opacity='.07' stroke-width='1.5'/><circle cx='60' cy='60' r='12' fill='none' stroke='white' stroke-opacity='.08' stroke-width='1.5'/><path d='M60 50 L67 60 L60 70 L53 60Z' fill='white' fill-opacity='.08'/><circle cx='0' cy='0' r='4' fill='white' fill-opacity='.06'/><circle cx='120' cy='120' r='4' fill='white' fill-opacity='.06'/><circle cx='120' cy='0' r='4' fill='white' fill-opacity='.06'/><circle cx='0' cy='120' r='4' fill='white' fill-opacity='.06'/></svg>") center/120px 120px,url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .11 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+:root[data-felttex="plain"] .felt::after{background:none}
+.felt.sl::after,.felt.vp::after,.felt.kn::after{background:none!important}
+/* camera: seated at the table (the felt tips away from you) or straight overhead */
+.game>.felt{transition:transform .5s ease,box-shadow .5s ease}
+:root[data-view="seat"] .game>.felt:is(.bj,.he:not(:has(.setup)),.rl,.cr,.bc,.tc){transform:perspective(1500px) rotateX(22deg);transform-origin:50% 92%;
+  box-shadow:inset 0 0 0 10px var(--rail),inset 0 0 0 11px rgba(255,255,255,.12),inset 0 14px 34px rgba(0,0,0,.5),0 16px 0 -2px color-mix(in srgb,var(--rail) 55%,#000),0 34px 40px -10px rgba(0,0,0,.55)}
+:root[data-view="seat"] .game{perspective-origin:50% 100%}
+@media (max-width:760px){:root[data-view="seat"] .game>.felt:is(.bj,.he:not(:has(.setup)),.rl,.cr,.bc,.tc){transform:perspective(2400px) rotateX(9deg);transform-origin:50% 100%}}
+@media (prefers-reduced-motion:reduce){.game>.felt{transition:none}}
 .toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;background:var(--ink);color:var(--panel);padding:.6rem 1rem;border-radius:10px;font-weight:700;max-width:calc(100vw - 32px)}
 .statgrid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(4,minmax(0,1fr));gap:4px 10px;font-size:.86rem;align-items:baseline}
 .statgrid .h{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
@@ -231,11 +254,7 @@ table.pay td.r,table.pay th.r{text-align:right;font-family:var(--mono);font-vari
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <pattern id="backPat" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="10" height="10" fill="var(--back)"/>
-      <path d="M0 5h10M5 0v10" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
-      <circle cx="5" cy="5" r="1.4" fill="rgba(255,255,255,.35)"/>
-    </pattern>
+    <g id="backDefs"></g>
     <radialGradient id="dieShade" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#ff5a5a"/><stop offset="1" stop-color="#a50f1a"/></radialGradient>
   </defs>
 </svg>
@@ -250,6 +269,7 @@ table.pay td.r,table.pay th.r{text-align:right;font-family:var(--mono);font-vari
       <div class="bankroll" id="bankroll" title="Your play-money bankroll"></div>
       <button class="btn small" id="cashBtn">Cashier</button>
       <button class="btn small" id="statsBtn">Stats</button>
+      <button class="btn small" id="viewBtn" hidden></button>
       <button class="btn small" id="themeBtn" aria-label="Switch light or dark mode"></button>
       <button class="btn small" id="setBtn">Settings</button>
     </div>
@@ -1167,21 +1187,28 @@ function record(game, wagered, net, expected) {
 }
 
 // ================= Settings =================
-const FELTS = [['Classic green', '#0d6a45'], ['Royal blue', '#1b4f8a'], ['Burgundy', '#7a1d2a'], ['Purple', '#4d2a72'], ['Teal', '#0f6066'], ['Black', '#24272b']];
-const BACKS = [['Red', '#b3202a'], ['Blue', '#1f4fa3'], ['Black', '#26262c'], ['Green', '#1c7a4a'], ['Purple', '#6b3fa0'], ['Gold', '#b0861d']];
-const DEF = { theme: 'system', felt: '#0d6a45', back: '#b3202a', fourColor: false, speed: 'normal', sound: true, coach: true };
+const FELTS = [['Classic green', '#0d6a45'], ['Royal blue', '#1b4f8a'], ['Burgundy', '#7a1d2a'], ['Purple', '#4d2a72'], ['Teal', '#0f6066'], ['Black', '#24272b'], ['Vegas red', '#a3162a'], ['Ocean', '#0c4a6e'], ['Camel', '#9a6a36'], ['Slate grey', '#4a5560'], ['Olive', '#4f5d1e'], ['Rose', '#9a3a6a']];
+const BACKS = [['Red', '#b3202a'], ['Blue', '#1f4fa3'], ['Black', '#26262c'], ['Green', '#1c7a4a'], ['Purple', '#6b3fa0'], ['Gold', '#b0861d'], ['Teal', '#0f7a80'], ['Orange', '#d0601a'], ['Pink', '#c8407a'], ['Navy', '#14244a']];
+const RAILS = [['Walnut', '#3a2418'], ['Mahogany', '#5a1c14'], ['Oak', '#8a5a2c'], ['Black leather', '#151418'], ['Oxblood leather', '#4a0f18'], ['Navy leather', '#14203a']];
+const FELT_TEX = [['cloth', 'Cloth'], ['woven', 'Woven'], ['printed', 'Printed'], ['plain', 'Smooth']];
+const BACK_PATS = [['lattice', 'Lattice'], ['diamonds', 'Diamonds'], ['scroll', 'Scroll'], ['sunburst', 'Sunburst'], ['stripes', 'Stripes'], ['dots', 'Dots'], ['plain', 'Plain']];
+const DEF = { theme: 'system', felt: '#0d6a45', back: '#b3202a', fourColor: false, speed: 'normal', sound: true, coach: true, feltTex: 'cloth', rail: '#3a2418', backPat: 'lattice', mono: 'VB', backFrame: 'white', view: 'seat' };
 let S = Object.assign({}, DEF, store.get('settings', {}));
 const saveS = () => store.set('settings', S);
 const isDark = () => S.theme === 'dark' || (S.theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
 function applySettings() {
   const r = document.documentElement;
   if (S.theme === 'system') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.theme);
-  r.style.setProperty('--felt', S.felt); r.style.setProperty('--back', S.back);
+  r.style.setProperty('--felt', S.felt); r.style.setProperty('--back', S.back); r.style.setProperty('--rail', S.rail);
+  r.setAttribute('data-felttex', S.feltTex); r.setAttribute('data-view', S.view);
+  applyBack();
+  const vb = $('#viewBtn'); if (vb) { vb.textContent = S.view === 'seat' ? '🪑 Seated' : '⬇ Overhead'; vb.setAttribute('aria-label', S.view === 'seat' ? 'Table view: seated. Switch to overhead' : 'Table view: overhead. Switch to seated'); }
   r.style.setProperty('--flip', S.speed === 'instant' ? '0s' : S.speed === 'fast' ? '.18s' : '.35s');
   $('#themeBtn').textContent = isDark() ? '☀ Light' : '☾ Dark';
   $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
 }
 $('#themeBtn').onclick = () => { S.theme = isDark() ? 'light' : 'dark'; saveS(); applySettings(); };
+$('#viewBtn').onclick = () => { S.view = S.view === 'seat' ? 'top' : 'seat'; saveS(); applySettings(); current && current.refresh && current.refresh(); };
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', applySettings);
 const SPEED = () => ({ normal: 1, fast: 0.45, instant: 0 }[S.speed] ?? 1);
 const sleep = ms => new Promise(r => setTimeout(r, ms * SPEED()));
@@ -1262,7 +1289,31 @@ function cardFace(c) {
   }
   return (cardCache[key] = h + '</svg>');
 }
-const CARD_BACK = '<svg viewBox="0 0 100 140" aria-hidden="true"><rect x="1" y="1" width="98" height="138" rx="7" fill="#fbfaf7" stroke="var(--card-edge)" stroke-width="1.5"/><rect x="7" y="7" width="86" height="126" rx="4" fill="url(#backPat)"/><rect x="7" y="7" width="86" height="126" rx="4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/><circle cx="50" cy="70" r="15" fill="var(--back)" stroke="#fbfaf7" stroke-width="2"/><text x="50" y="76" text-anchor="middle" font-family="Limelight,Georgia,serif" font-size="15" fill="#fbfaf7">VB</text></svg>';
+// card backs: a pattern (drawn in card coordinates, 100 x 140), a colour, a frame and a monogram, all from Settings
+function backPatternSVG(pat) {
+  const L = 'rgba(255,255,255,.3)', L2 = 'rgba(255,255,255,.16)';
+  switch (pat) {
+    case 'diamonds': return `<pattern id="backPat" width="12" height="16" patternUnits="userSpaceOnUse"><rect width="12" height="16" fill="var(--back)"/><path d="M6 1 L11 8 L6 15 L1 8Z" fill="${L2}" stroke="${L}" stroke-width=".8"/></pattern>`;
+    case 'scroll': return `<pattern id="backPat" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="var(--back)"/><path d="M10 2 C16 2 16 9 11 9 C7 9 8 5 10 5 M10 18 C4 18 4 11 9 11 C13 11 12 15 10 15 M2 10 C2 4 9 4 9 9 M18 10 C18 16 11 16 11 11" fill="none" stroke="${L}" stroke-width="1.1"/><circle cx="10" cy="10" r="1.3" fill="${L}"/></pattern>`;
+    case 'sunburst': { let r = ''; for (let k = 0; k < 36; k++) { const a0 = k * 10 * Math.PI / 180, a1 = (k * 10 + 5) * Math.PI / 180; if (k % 2) continue; r += `<path d="M50 70 L${(50 + 140 * Math.cos(a0)).toFixed(1)} ${(70 + 140 * Math.sin(a0)).toFixed(1)} L${(50 + 140 * Math.cos(a1)).toFixed(1)} ${(70 + 140 * Math.sin(a1)).toFixed(1)}Z" fill="${L2}"/>`; } return `<pattern id="backPat" width="100" height="140" patternUnits="userSpaceOnUse"><rect width="100" height="140" fill="var(--back)"/>${r}<circle cx="50" cy="70" r="32" fill="none" stroke="${L}" stroke-width="1"/><circle cx="50" cy="70" r="40" fill="none" stroke="${L2}" stroke-width="3"/></pattern>`; }
+    case 'stripes': return `<pattern id="backPat" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="var(--back)"/><rect width="3" height="8" fill="${L2}"/></pattern>`;
+    case 'dots': return `<pattern id="backPat" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="var(--back)"/><circle cx="2.25" cy="2.25" r="1.6" fill="${L}"/><circle cx="6.75" cy="6.75" r="1.6" fill="${L}"/></pattern>`;
+    case 'plain': return `<pattern id="backPat" width="100" height="140" patternUnits="userSpaceOnUse"><rect width="100" height="140" fill="var(--back)"/><rect x="12" y="12" width="76" height="116" rx="3" fill="none" stroke="${L}" stroke-width="1"/><rect x="15" y="15" width="70" height="110" rx="2" fill="none" stroke="${L2}" stroke-width="1"/></pattern>`;
+    default: return `<pattern id="backPat" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="var(--back)"/><path d="M0 5h10M5 0v10" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/><circle cx="5" cy="5" r="1.4" fill="rgba(255,255,255,.35)"/></pattern>`;
+  }
+}
+function makeBack() {
+  const fr = S.backFrame, mono = esc(String(S.mono || '').slice(0, 3)), inset = fr === 'none' ? 1.5 : 7;
+  const edge = fr === 'gold' ? '#d8b048' : '#fbfaf7';
+  const m = mono ? `<circle cx="50" cy="70" r="${mono.length > 2 ? 17 : 15}" fill="var(--back)" stroke="${edge}" stroke-width="2"/><text x="50" y="${mono.length > 2 ? 75 : 76}" text-anchor="middle" font-family="Limelight,Georgia,serif" font-size="${mono.length > 2 ? 12 : 15}" fill="${edge}">${mono}</text>` : `<path d="M50 56 C50 56 36 68 36 75 C36 81 44 83 48 78 L46 86 H54 L52 78 C56 83 64 81 64 75 C64 68 50 56 50 56Z" fill="${edge}"/>`;
+  return `<svg viewBox="0 0 100 140" aria-hidden="true"><rect x="1" y="1" width="98" height="138" rx="7" fill="${fr === 'gold' ? '#c89a2a' : '#fbfaf7'}" stroke="var(--card-edge)" stroke-width="1.5"/><rect x="${inset}" y="${inset}" width="${100 - inset * 2}" height="${140 - inset * 2}" rx="${fr === 'none' ? 6 : 4}" fill="url(#backPat)"/><rect x="${inset}" y="${inset}" width="${100 - inset * 2}" height="${140 - inset * 2}" rx="${fr === 'none' ? 6 : 4}" fill="none" stroke="${fr === 'gold' ? 'rgba(255,240,180,.8)' : 'rgba(255,255,255,.55)'}" stroke-width="1.2"/>${m}</svg>`;
+}
+let CARD_BACK = '';
+function applyBack() {
+  const d = document.getElementById('backDefs'); if (d) d.innerHTML = backPatternSVG(S.backPat);
+  const nb = makeBack(); if (nb === CARD_BACK) return; CARD_BACK = nb;
+  document.querySelectorAll('.pcard .b').forEach(b => b.innerHTML = CARD_BACK);
+}
 // a card element; down = face down; cls extra classes
 function cardHTML(c, opt) {
   opt = opt || {};
@@ -1296,14 +1347,35 @@ function chipSVG(d) {
   let spots = '';
   for (let i = 0; i < 6; i++) spots += `<rect x="18" y="1.2" width="4" height="7" rx="1" fill="${edge}" transform="rotate(${i * 60} 20 20)"/>`;
   const lab = chipLabel(d);
-  return (chipCache[d] = `<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="${fill}" stroke="rgba(0,0,0,.35)" stroke-width="1"/>${spots}<circle cx="20" cy="20" r="12.5" fill="${fill}" stroke="${edge}" stroke-width="1.2" stroke-dasharray="2.2 1.8"/><text x="20" y="${lab.length > 2 ? 23.6 : 24.4}" text-anchor="middle" font-family="Atkinson Hyperlegible,Arial,sans-serif" font-weight="700" font-size="${lab.length > 2 ? 9.5 : 11.5}" fill="${ink}">${lab}</text></svg>`);
+  return (chipCache[d] = `<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="${fill}" stroke="rgba(0,0,0,.35)" stroke-width="1"/>${spots}<circle cx="20" cy="20" r="12.5" fill="${fill}" stroke="${edge}" stroke-width="1.2" stroke-dasharray="2.2 1.8"/><path d="M6 14 A15 15 0 0 1 26 4.6" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2.4" stroke-linecap="round"/><text x="20" y="${lab.length > 2 ? 23.6 : 24.4}" text-anchor="middle" font-family="Atkinson Hyperlegible,Arial,sans-serif" font-weight="700" font-size="${lab.length > 2 ? 9.5 : 11.5}" fill="${ink}">${lab}</text></svg>`);
 }
 function breakdown(c) { const out = []; for (let i = DENOMS.length - 1; i >= 0 && out.length < 12; i--) while (c >= DENOMS[i] && out.length < 12) { out.push(DENOMS[i]); c -= DENOMS[i]; } return out.reverse(); }
+// a real-looking stack: each chip is a short cylinder with edge inserts, the biggest chips at the bottom, slightly out of true
+const shade = (hex, f) => { const n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255, m = v => Math.max(0, Math.min(255, Math.round(f < 0 ? v * (1 + f) : v + (255 - v) * f))); return `rgb(${m(r)},${m(g)},${m(b)})`; };
 function stackHTML(c, size, noLabel) {
   if (!c) return '';
-  const chips = breakdown(c).slice(-8), sz = size || 34, step = Math.max(2, sz * 0.09);
-  return `<div class="stack" style="--chip:${sz}px;--h:${((chips.length - 1) * step).toFixed(1)}px">` +
-    chips.map((d, i) => chipSVG(d).replace('<svg ', `<svg style="bottom:${(i * step).toFixed(1)}px" `)).join('') +
+  const chips = breakdown(c).slice(-10).reverse(), sz = size || 34, seat = S.view === 'seat';
+  const rx = 19, k = seat ? .56 : .9, ry = rx * k, t = seat ? 3.6 : 1.5, n = chips.length, Wd = 44, H = 2 * ry + n * t + 5;
+  let h = `<ellipse cx="23" cy="${(H - ry - 1.5).toFixed(2)}" rx="${rx + 1}" ry="${(ry + 1).toFixed(2)}" fill="rgba(0,0,0,.35)"/>`;
+  for (let i = 0; i < n; i++) {
+    const d = chips[i], [fill, ink, edge] = CHIP_COL[d] || ['#888', '#fff', '#fff'];
+    const jx = ((Math.sin((c % 9973) * 12.9898 + i * 78.233) * 43758.5453) % 1) * 1.6, cx = 22 + jx, cy = H - ry - 3 - (i + 1) * t;
+    // side band (the front half of the cylinder)
+    h += `<path d="M${(cx - rx).toFixed(2)} ${cy.toFixed(2)} A${rx} ${ry.toFixed(2)} 0 0 0 ${(cx + rx).toFixed(2)} ${cy.toFixed(2)} L${(cx + rx).toFixed(2)} ${(cy + t).toFixed(2)} A${rx} ${ry.toFixed(2)} 0 0 1 ${(cx - rx).toFixed(2)} ${(cy + t).toFixed(2)}Z" fill="${shade(fill, -.28)}"/>`;
+    const rot = (i * 37 + (c % 60)) * Math.PI / 180;
+    for (let j = 0; j < 6; j++) {
+      const th = rot + j * Math.PI / 3, sn = Math.sin(th); if (sn < .12) continue;
+      const x = cx + rx * Math.cos(th), w = 4.2 * sn, y = cy + ry * sn;
+      h += `<rect x="${(x - w / 2).toFixed(2)}" y="${y.toFixed(2)}" width="${w.toFixed(2)}" height="${t.toFixed(2)}" fill="${edge}" opacity=".95"/>`;
+    }
+    // top face: the chip's own art squashed into an ellipse
+    const face = chipSVG(d).replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '');
+    h += `<g transform="translate(${(cx - 20).toFixed(2)} ${(cy - 20 * k).toFixed(2)}) scale(1 ${k})">${face}</g>`;
+  }
+  // a little sheen on the top chip
+  const topY = H - ry - 3 - n * t;
+  h += `<ellipse cx="18" cy="${(topY - ry * .35).toFixed(2)}" rx="9" ry="${(ry * .3).toFixed(2)}" fill="rgba(255,255,255,.16)"/>`;
+  return `<div class="stack" style="--chip:${sz}px"><svg viewBox="0 0 ${Wd} ${H.toFixed(2)}" width="${sz}" height="${(sz * H / Wd).toFixed(1)}" aria-hidden="true">${h}</svg>` +
     (noLabel ? '' : `<span class="amt">${money(c)}</span>`) + '</div>';
 }
 let CHIP = store.get('chip', 2500);
@@ -1342,12 +1414,15 @@ function edgePill(e) { return `<span class="pill edge">House edge ${e}</span>`; 
 
 // ================= Router and floor =================
 const GAMES = [];
+// table games get the seated / overhead camera; machines (slots, video poker, keno) are always seen face on
+const TABLE_IDS = ['blackjack', 'holdem', 'roulette', 'craps', 'baccarat', 'threecard'];
 let current = null;
 function register(g) { GAMES.push(g); }
 function go(id) { location.hash = id === 'floor' ? '' : id; route(); }
 function route() {
   const id = location.hash.replace('#', '');
   const g = GAMES.find(x => x.id === id);
+  $('#viewBtn').hidden = !(g && TABLE_IDS.includes(g.id));
   if (current && current.unmount) current.unmount();
   current = null; closeModal();
   const view = $('#view');
@@ -1396,16 +1471,35 @@ function openSettings() {
   openModal(`<div class="modal-head"><h2>Settings</h2><button class="btn small" data-close>Done</button></div>
   <div class="setsec">
     <div class="setrow"><div class="lab"><b>Theme</b><span>Light, dark, or follow your device</span></div>${seg('theme', [['system', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])}</div>
-    <div class="setrow"><div class="lab"><b>Felt</b></div><div class="swatches" id="feltSw">${FELTS.map(([n, c]) => `<button class="swatch ${S.felt === c ? 'on' : ''}" data-v="${c}" style="background:${c}" aria-label="${n}" title="${n}"></button>`).join('')}</div></div>
-    <div class="setrow"><div class="lab"><b>Card backs</b></div><div class="swatches" id="backSw">${BACKS.map(([n, c]) => `<button class="swatch ${S.back === c ? 'on' : ''}" data-v="${c}" style="background:${c}" aria-label="${n}" title="${n}"></button>`).join('')}</div></div>
+    <div class="setrow"><div class="lab"><b>Table view</b><span>Sit at the table, or look straight down on it</span></div>${seg('view', [['seat', 'Seated'], ['top', 'Overhead']])}</div>
+  </div>
+  <div class="setsec"><h3>The table</h3>
+    <div class="custprev"><div class="felt minifelt" id="prevFelt"><div class="cards spread" id="prevCards" style="--cw:54px;min-height:0"></div><div id="prevChips"></div></div></div>
+    <div class="setrow"><div class="lab"><b>Felt</b><span>Pick one, or mix your own with the last swatch</span></div><div class="swatches" id="feltSw">${FELTS.map(([n, c]) => `<button class="swatch ${S.felt === c ? 'on' : ''}" data-v="${c}" style="background:${c}" aria-label="${n}" title="${n}"></button>`).join('')}<label class="swatch custom ${FELTS.some(x => x[1] === S.felt) ? '' : 'on'}" title="Custom felt colour"><input type="color" id="feltCustom" value="${S.felt}" aria-label="Custom felt colour"></label></div></div>
+    <div class="setrow"><div class="lab"><b>Felt finish</b></div>${seg('feltTex', FELT_TEX)}</div>
+    <div class="setrow"><div class="lab"><b>Table rail</b><span>Wood or padded leather</span></div><div class="swatches" id="railSw">${RAILS.map(([n, c]) => `<button class="swatch ${S.rail === c ? 'on' : ''}" data-v="${c}" style="background:${c}" aria-label="${n}" title="${n}"></button>`).join('')}</div></div>
+  </div>
+  <div class="setsec"><h3>Card backs</h3>
+    <div class="setrow"><div class="lab"><b>Colour</b></div><div class="swatches" id="backSw">${BACKS.map(([n, c]) => `<button class="swatch ${S.back === c ? 'on' : ''}" data-v="${c}" style="background:${c}" aria-label="${n}" title="${n}"></button>`).join('')}<label class="swatch custom ${BACKS.some(x => x[1] === S.back) ? '' : 'on'}" title="Custom back colour"><input type="color" id="backCustom" value="${S.back}" aria-label="Custom card back colour"></label></div></div>
+    <div class="setrow"><div class="lab"><b>Pattern</b></div><div class="pills" id="patSel">${BACK_PATS.map(([v, l]) => `<button data-v="${v}" class="${S.backPat === v ? 'on' : ''}">${l}</button>`).join('')}</div></div>
+    <div class="setrow"><div class="lab"><b>Border</b></div>${seg('backFrame', [['white', 'White'], ['gold', 'Gold'], ['none', 'None']])}</div>
+    <div class="setrow"><div class="lab"><b>Monogram</b><span>Up to three letters in the middle; leave empty for a spade</span></div><input class="txt" id="monoIn" maxlength="3" value="${esc(S.mono || '')}" aria-label="Card back monogram" autocomplete="off"></div>
+  </div>
+  <div class="setsec">
     <div class="setrow"><div class="lab"><b>Four-colour deck</b><span>Blue diamonds and green clubs, easier to tell apart</span></div>${seg('fourColor', [[false, 'Off'], [true, 'On']])}</div>
     <div class="setrow"><div class="lab"><b>Dealing speed</b></div>${seg('speed', [['normal', 'Normal'], ['fast', 'Fast'], ['instant', 'Instant']])}</div>
     <div class="setrow"><div class="lab"><b>Strategy coach</b><span>Shows the best play and warns about costly mistakes</span></div>${seg('coach', [[true, 'On'], [false, 'Off']])}</div>
     <div class="setrow"><div class="lab"><b>Sounds</b></div>${seg('sound', [[true, 'On'], [false, 'Off']])}</div>
   </div>`);
-  bindSeg($('#ovBox'), S, k => { saveS(); applySettings(); if (k === 'fourColor' || k === 'coach') { for (const k2 in cardCache) delete cardCache[k2]; current && current.refresh && current.refresh(); } });
-  $('#feltSw').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; S.felt = b.dataset.v; saveS(); applySettings(); $$('#feltSw .swatch').forEach(x => x.classList.toggle('on', x === b)); };
-  $('#backSw').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; S.back = b.dataset.v; saveS(); applySettings(); $$('#backSw .swatch').forEach(x => x.classList.toggle('on', x === b)); };
+  bindSeg($('#ovBox'), S, k => { saveS(); applySettings(); if (k === 'view') { current && current.refresh && current.refresh(); } if (k === 'fourColor' || k === 'coach') { for (const k2 in cardCache) delete cardCache[k2]; current && current.refresh && current.refresh(); } });
+  const prev = () => { const pc = $('#prevCards'); if (!pc) return; pc.innerHTML = cardHTML(0) + cardHTML(null, { down: true }); $('#prevChips').innerHTML = stackHTML(8600, 34, true); };
+  const pick = (id, key) => { $('#' + id).onclick = e => { const b = e.target.closest('button[data-v]'); if (!b) return; S[key] = b.dataset.v; saveS(); applySettings(); $$('#' + id + ' .swatch').forEach(x => x.classList.toggle('on', x === b)); prev(); }; };
+  pick('feltSw', 'felt'); pick('railSw', 'rail'); pick('backSw', 'back');
+  const custom = (id, sw, key) => $('#' + id).addEventListener('input', e => { S[key] = e.target.value; saveS(); applySettings(); $$('#' + sw + ' .swatch').forEach(x => x.classList.toggle('on', x.classList.contains('custom'))); prev(); });
+  custom('feltCustom', 'feltSw', 'felt'); custom('backCustom', 'backSw', 'back');
+  $('#patSel').onclick = e => { const b = e.target.closest('button[data-v]'); if (!b) return; S.backPat = b.dataset.v; saveS(); applySettings(); $$('#patSel button').forEach(x => x.classList.toggle('on', x === b)); prev(); };
+  $('#monoIn').addEventListener('input', e => { S.mono = e.target.value.toUpperCase().slice(0, 3); saveS(); applySettings(); prev(); });
+  prev();
 }
 $('#setBtn').onclick = openSettings;
 function openHow(g) {
@@ -2062,7 +2156,7 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
 (function () {
   const MAXSPOT = 1000000;
   let O = Object.assign({ wheel: 'eu', partage: false }, store.get('rl.opts', {}));
-  let bets = {}, last = {}, hist = store.get('rl.hist', []), spinning = false, alive = false, wheelAngle = 0, ballAngle = 0, vertical = false, ctx = 0;
+  let bets = {}, last = {}, hist = store.get('rl.hist', []), spinning = false, alive = false, wheelAngle = 0, ballAngle = 0, ballR = 137, vertical = false, ctx = 0;
   const N = () => O.wheel === 'us' ? 38 : 37;
   const WHEEL = () => O.wheel === 'us' ? V.WHEEL_US : V.WHEEL_EU;
   // ---- table geometry in "cell" units, horizontal: 14 x 4.3 ----
@@ -2237,44 +2331,81 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
   // ---- wheel ----
   function drawWheel() {
     const w = WHEEL(), n = w.length, step = 360 / n;
-    let pockets = '';
+    const p = (r, a) => [150 + r * Math.sin(a * Math.PI / 180), 150 - r * Math.cos(a * Math.PI / 180)].map(v => v.toFixed(2)).join(' ');
+    let pockets = '', frets = '', nums = '';
     for (let i = 0; i < n; i++) {
       const a0 = (i - .5) * step, a1 = (i + .5) * step, num = w[i], col = V.numColor(num);
-      const p = (r, a) => [150 + r * Math.sin(a * Math.PI / 180), 150 - r * Math.cos(a * Math.PI / 180)].map(v => v.toFixed(2)).join(' ');
-      pockets += `<path d="M${p(140, a0)} A140 140 0 0 1 ${p(140, a1)} L${p(98, a1)} A98 98 0 0 0 ${p(98, a0)}Z" fill="${col === 'red' ? '#b81c25' : col === 'black' ? '#141418' : '#13804b'}" stroke="#c9a54a" stroke-width=".8"/>`;
-      pockets += `<text x="150" y="23" transform="rotate(${i * step} 150 150)" text-anchor="middle" font-family="Atkinson Hyperlegible,Arial,sans-serif" font-weight="700" font-size="${n > 37 ? 11 : 11.5}" fill="#fff">${V.numLabel(num)}</text>`;
+      const c = col === 'red' ? 'url(#rlRed)' : col === 'black' ? 'url(#rlBlk)' : 'url(#rlGrn)';
+      // number ring (outer) and the pocket itself (inner, where the ball rests)
+      pockets += `<path d="M${p(128, a0)} A128 128 0 0 1 ${p(128, a1)} L${p(105, a1)} A105 105 0 0 0 ${p(105, a0)}Z" fill="${c}"/>`;
+      pockets += `<path d="M${p(105, a0)} A105 105 0 0 1 ${p(105, a1)} L${p(88, a1)} A88 88 0 0 0 ${p(88, a0)}Z" fill="${col === 'red' ? '#7a0f16' : col === 'black' ? '#0a0a0c' : '#0a4d2c'}"/>`;
+      frets += `<path d="M${p(128, a0)} L${p(88, a0)}" stroke="url(#rlGold)" stroke-width="1.3"/>`;
+      nums += `<text x="150" y="${n > 37 ? 36.5 : 36}" transform="rotate(${(i * step).toFixed(3)} 150 150)" text-anchor="middle" font-family="Atkinson Hyperlegible,Arial,sans-serif" font-weight="700" font-size="${n > 37 ? 10 : 10.5}" fill="#fff">${V.numLabel(num)}</text>`;
     }
-    let spokes = ''; for (let k = 0; k < 8; k++) spokes += `<path d="M150 150 L150 ${k % 2 ? 92 : 82}" stroke="#d8b65a" stroke-width="5" stroke-linecap="round" transform="rotate(${k * 45} 150 150)"/>`;
+    let spokes = ''; for (let k = 0; k < 4; k++) spokes += `<g transform="rotate(${k * 90} 150 150)"><path d="M147 150 L148.6 96 L151.4 96 L153 150Z" fill="url(#rlChrome)"/><circle cx="150" cy="99" r="4.2" fill="url(#rlChrome)" stroke="#6a5420" stroke-width=".6"/></g>`;
+    let dia = ''; for (let k = 0; k < 8; k++) dia += `<path d="M150 ${150 - 141} l3.4 6 -3.4 6 -3.4 -6Z" fill="url(#rlChrome)" stroke="#5a4a20" stroke-width=".5" transform="rotate(${k * 45 + 22.5} 150 150)"/>`;
     $('#wheel').innerHTML = `<svg viewBox="0 0 300 300" role="img" aria-label="${O.wheel === 'us' ? 'American' : 'European'} roulette wheel">
-      <circle cx="150" cy="150" r="149" fill="#3a2418"/><circle cx="150" cy="150" r="146" fill="#24160e" stroke="#7a5230" stroke-width="2"/>
-      <g id="wRot" style="transform-origin:150px 150px">${pockets}<circle cx="150" cy="150" r="98" fill="#5a3a20" stroke="#c9a54a" stroke-width="1.5"/><circle cx="150" cy="150" r="80" fill="#7a5230"/>${spokes}<circle cx="150" cy="150" r="20" fill="#e2c46a" stroke="#8a6a20" stroke-width="2"/><circle cx="150" cy="150" r="7" fill="#fff6d6"/></g>
-      <circle id="ball" cx="150" cy="16" r="6" fill="#fdfdfb" stroke="#999" stroke-width=".8"/></svg>`;
-    setWheel(wheelAngle, ballAngle, 136);
+      <defs>
+        <radialGradient id="rlRim" cx=".5" cy=".42" r=".6"><stop offset=".86" stop-color="#6b3f22"/><stop offset=".93" stop-color="#4a2814"/><stop offset="1" stop-color="#24130a"/></radialGradient>
+        <radialGradient id="rlTrack" cx=".5" cy=".45" r=".55"><stop offset=".78" stop-color="#3c2414"/><stop offset=".9" stop-color="#8a5a34"/><stop offset=".97" stop-color="#c08a58"/></radialGradient>
+        <radialGradient id="rlCone" cx=".42" cy=".38" r=".65"><stop offset="0" stop-color="#b07a46"/><stop offset=".55" stop-color="#7a4c28"/><stop offset="1" stop-color="#3e2412"/></radialGradient>
+        <linearGradient id="rlGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff2b8"/><stop offset=".5" stop-color="#d4a640"/><stop offset="1" stop-color="#7a5a14"/></linearGradient>
+        <linearGradient id="rlChrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e8d18a"/><stop offset=".7" stop-color="#a8822e"/><stop offset="1" stop-color="#fff0c0"/></linearGradient>
+        <radialGradient id="rlRed" cx=".5" cy=".5" r=".8"><stop offset="0" stop-color="#e0303a"/><stop offset="1" stop-color="#9a1018"/></radialGradient>
+        <radialGradient id="rlBlk" cx=".5" cy=".5" r=".8"><stop offset="0" stop-color="#34343c"/><stop offset="1" stop-color="#0c0c10"/></radialGradient>
+        <radialGradient id="rlGrn" cx=".5" cy=".5" r=".8"><stop offset="0" stop-color="#20a866"/><stop offset="1" stop-color="#0a5c34"/></radialGradient>
+        <radialGradient id="rlBall" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#ecebe6"/><stop offset="1" stop-color="#9c9a94"/></radialGradient>
+        <radialGradient id="rlShine" cx=".35" cy=".25" r=".8"><stop offset="0" stop-color="rgba(255,255,255,.22)"/><stop offset=".6" stop-color="rgba(255,255,255,0)"/></radialGradient>
+      </defs>
+      <circle cx="150" cy="154" r="149" fill="rgba(0,0,0,.35)"/>
+      <circle cx="150" cy="150" r="149" fill="url(#rlRim)"/>
+      <circle cx="150" cy="150" r="146" fill="url(#rlTrack)" stroke="#2a160a" stroke-width="1.5"/>
+      ${dia}
+      <circle cx="150" cy="150" r="131" fill="none" stroke="url(#rlGold)" stroke-width="3"/>
+      <g id="wRot">${pockets}${frets}${nums}
+        <circle cx="150" cy="150" r="128" fill="none" stroke="url(#rlGold)" stroke-width="1.6"/>
+        <circle cx="150" cy="150" r="105" fill="none" stroke="url(#rlGold)" stroke-width="1"/>
+        <circle cx="150" cy="150" r="88" fill="url(#rlCone)" stroke="url(#rlGold)" stroke-width="2"/>
+        <circle cx="150" cy="150" r="62" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1"/>
+        ${spokes}<circle cx="150" cy="150" r="17" fill="url(#rlChrome)" stroke="#6a5420" stroke-width="1"/><circle cx="150" cy="150" r="8" fill="url(#rlGold)"/><circle cx="147" cy="146" r="3" fill="rgba(255,255,255,.8)"/></g>
+      <circle cx="150" cy="150" r="146" fill="url(#rlShine)" pointer-events="none"/>
+      <g id="ball"><ellipse id="ballSh" cx="0" cy="0" rx="5.6" ry="3.4" fill="rgba(0,0,0,.45)"/><circle id="ballC" cx="0" cy="0" r="5.4" fill="url(#rlBall)" stroke="rgba(0,0,0,.35)" stroke-width=".5"/></g></svg>`;
+    setWheel(wheelAngle, ballAngle, ballR);
   }
   function setWheel(wa, ba, br) {
-    const g = $('#wRot'), b = $('#ball'); if (!g) return;
-    g.setAttribute('transform', `rotate(${wa % 360} 150 150)`);
-    b.setAttribute('cx', (150 + br * Math.sin(ba * Math.PI / 180)).toFixed(2)); b.setAttribute('cy', (150 - br * Math.cos(ba * Math.PI / 180)).toFixed(2));
+    const g = $('#wRot'), sh = $('#ballSh'), bc = $('#ballC'); if (!g) return;
+    // rotate with the SVG attribute only: Safari also applies CSS transform-origin to it, which made the wheel orbit off the table
+    g.setAttribute('transform', `rotate(${(wa % 360).toFixed(3)} 150 150)`);
+    const x = 150 + br * Math.sin(ba * Math.PI / 180), y = 150 - br * Math.cos(ba * Math.PI / 180);
+    bc.setAttribute('cx', x.toFixed(2)); bc.setAttribute('cy', y.toFixed(2));
+    sh.setAttribute('cx', (x + 1.6).toFixed(2)); sh.setAttribute('cy', (y + 2.6).toFixed(2));
   }
   function animateSpin(result) {
     const w = WHEEL(), n = w.length, step = 360 / n, idx = w.indexOf(result);
-    const dur = 5200 * SPEED();
-    const wFrom = wheelAngle, wTo = wFrom + 360 * 1.5 + Math.random() * 120;
+    const dur = 6400 * SPEED();
+    const wFrom = wheelAngle, wTo = wFrom + 360 * 1.6 + Math.random() * 120;
     const bTo = wTo + idx * step, bFrom = ballAngle;
-    // ball travels counter-clockwise several turns
-    let bDelta = ((bTo - bFrom) % 360 + 360) % 360 - 360 * 5;
+    // the ball runs the other way round the track, several laps, then drops and rattles into its pocket
+    const bDelta = ((bTo - bFrom) % 360 + 360) % 360 - 360 * 6;
+    const RT = 137, RP = 97, RD = 116;
     return new Promise(res => {
-      if (!dur) { wheelAngle = wTo; ballAngle = bTo; setWheel(wheelAngle, ballAngle, 104); return res(); }
-      const t0 = performance.now(); let lastTick = 0;
-      const ease = t => 1 - Math.pow(1 - t, 3);
+      if (!dur) { wheelAngle = wTo % 360; ballAngle = bTo % 360; ballR = RP; setWheel(wheelAngle, ballAngle, RP); return res(); }
+      const t0 = performance.now(); let lastTick = 0, bounced = 0;
+      const wEase = t => 1 - Math.pow(1 - t, 2.4);
       const frame = now => {
         if (!alive) return res();
-        const t = Math.min(1, (now - t0) / dur), e = ease(t);
-        const wa = wFrom + (wTo - wFrom) * e, ba = bFrom + bDelta * (1 - Math.pow(1 - t, 2.2));
-        const drop = t < .62 ? 136 : t < .82 ? 136 - (t - .62) / .2 * 26 + Math.sin(t * 60) * 3 * (1 - t) : 104 + Math.sin(t * 40) * 2 * (1 - t) * 3;
-        setWheel(wa, ba, drop);
-        if (t > .55 && now - lastTick > 70 + t * 160) { Snd.tick(); lastTick = now; }
-        if (t < 1) requestAnimationFrame(frame); else { wheelAngle = wTo % 360; ballAngle = bTo % 360; setWheel(wheelAngle, ballAngle, 104); res(); }
+        const t = Math.min(1, (now - t0) / dur);
+        const wa = wFrom + (wTo - wFrom) * wEase(t);
+        // ball angle relative to the wheel converges on the pocket
+        let ba = bFrom + bDelta * (1 - Math.pow(1 - t, 2.6));
+        let r;
+        if (t < .58) r = RT;
+        else if (t < .7) { const k = (t - .58) / .12; r = RT - (RT - RD) * k * k; }
+        else if (t < .9) { const k = (t - .7) / .2; r = RD - (RD - RP) * k + Math.abs(Math.sin(k * Math.PI * 4)) * 9 * (1 - k); ba += Math.sin(k * Math.PI * 5) * 6 * (1 - k); if (k > bounced + .2) { bounced = k; Snd.tick(); } }
+        else r = RP;
+        setWheel(wa, ba, r);
+        if (t > .5 && t < .7 && now - lastTick > 70 + t * 120) { Snd.tick(); lastTick = now; }
+        if (t < 1) requestAnimationFrame(frame); else { wheelAngle = wTo % 360; ballAngle = bTo % 360; ballR = RP; setWheel(wheelAngle, ballAngle, RP); res(); }
       };
       requestAnimationFrame(frame);
     });
@@ -3148,12 +3279,12 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
 
 // ================= Slots =================
 (function () {
-  let O = Object.assign({ coins: 3, denom: 100 }, store.get('sl.opts', {}));
+  let O = Object.assign({ coins: 3, denom: 100, theme: 'classic' }, store.get('sl.opts', {}));
   let spinning = false, alive = false, pos = [0, 0, 0], ctx = 0, lastRow = -1, lastPay = 0;
   const DISPLAY = [5, 0, 2, 0, 1, 0, 3, 0, 4, 0, 6, 0, 2, 0, 3, 0, 1, 0, 4, 0, 2, 0];
   const DENOMS = [[100, '$1'], [500, '$5'], [2500, '$25'], [10000, '$100']];
   const RET = () => V.slotReturn(O.coins === 3 ? 5000 / 3 : 0);
-  function sym(s) {
+  function symClassic(s) {
     switch (s) {
       case 1: return `<svg viewBox="0 0 100 70" aria-label="Cherry"><path d="M50 10 C46 24 38 34 34 44 M50 10 C56 26 62 34 66 42" stroke="#2c7a2c" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M50 10 C58 6 68 8 72 14 C64 16 56 14 50 10Z" fill="#3a9a3a"/><circle cx="33" cy="50" r="13" fill="#c8102e"/><circle cx="67" cy="48" r="13" fill="#c8102e"/><circle cx="29" cy="45" r="4" fill="#ff8a8a"/><circle cx="63" cy="43" r="4" fill="#ff8a8a"/></svg>`;
       case 2: case 3: case 4: { const n = s - 1, hh = n === 1 ? 24 : n === 2 ? 18 : 14, gap = 4, tot = n * hh + (n - 1) * gap, y0 = 35 - tot / 2; let r = ''; for (let i = 0; i < n; i++) r += `<rect x="16" y="${y0 + i * (hh + gap)}" width="68" height="${hh}" rx="4" fill="#16161a" stroke="#c9a54a" stroke-width="1.5"/><text x="50" y="${y0 + i * (hh + gap) + hh * .74}" text-anchor="middle" font-family="Limelight,Georgia,serif" font-size="${hh * .72}" fill="#fff" letter-spacing="2">BAR</text>`; return `<svg viewBox="0 0 100 70" aria-label="${['', '', 'Bar', 'Double bar', 'Triple bar'][s]}">${r}</svg>`; }
@@ -3162,39 +3293,127 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
       default: return '<svg viewBox="0 0 100 70" aria-label="Blank"></svg>';
     }
   }
+  const V7 = (lab, body) => `<svg viewBox="0 0 100 70" aria-label="${lab}">${body}</svg>`;
+  const WILDTXT = (y, c) => `<text x="50" y="${y}" text-anchor="middle" font-family="Atkinson Hyperlegible,Arial,sans-serif" font-weight="700" font-size="11" fill="${c || '#fff'}" stroke="rgba(0,0,0,.55)" stroke-width="2.4" paint-order="stroke">WILD</text>`;
+  // five machines: same reels, same weights, same paytable; only the pictures and the cabinet change
+  const THEMES = {
+    classic: { name: 'Lucky Strip', blurb: 'Bars, cherries and sevens', names: ['', 'cherry', 'bar', 'double bar', 'triple bar', 'seven', 'star'], group: 'bars',
+      pays: ['3 stars', '3 sevens', '3 triple bars', '3 double bars', '3 bars', 'Any 3 bars', '3 cherries', '2 cherries', '1 cherry'], sym: s => symClassic(s) },
+    fruit: { name: 'Fruit Fiesta', blurb: 'Limes, melons and a golden pineapple', names: ['', 'lime', 'plum', 'orange', 'watermelon', 'bell', 'pineapple'], group: 'fruit',
+      pays: ['3 pineapples', '3 bells', '3 watermelons', '3 oranges', '3 plums', 'Any 3 fruit', '3 limes', '2 limes', '1 lime'],
+      sym: s => {
+        switch (s) {
+          case 1: return V7('Lime', `<circle cx="50" cy="37" r="24" fill="#3c9a2a"/><circle cx="50" cy="37" r="20" fill="#c8ef6a"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(k => `<path d="M50 37 L${(50 + 18 * Math.cos(k * Math.PI / 4)).toFixed(1)} ${(37 + 18 * Math.sin(k * Math.PI / 4)).toFixed(1)}" stroke="#f4ffd0" stroke-width="2"/>`).join('')}<circle cx="50" cy="37" r="3" fill="#f4ffd0"/>`);
+          case 2: return V7('Plum', `<ellipse cx="50" cy="40" rx="22" ry="24" fill="#6a2a8a"/><path d="M50 18 Q47 40 50 63" stroke="#4a1466" stroke-width="2" fill="none"/><ellipse cx="41" cy="31" rx="5" ry="8" fill="#b67ad8" opacity=".7"/><path d="M50 17 Q62 6 72 12 Q62 20 50 17Z" fill="#3a9a3a"/>`);
+          case 3: return V7('Orange', `<circle cx="50" cy="39" r="25" fill="#f28a12"/><circle cx="41" cy="29" r="7" fill="#ffc46a" opacity=".7"/>${[[58, 44], [44, 50], [60, 30], [36, 40], [52, 56]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.2" fill="#c86a00"/>`).join('')}<path d="M50 14 Q60 4 70 9 Q61 17 50 14Z" fill="#2c8a2c"/>`);
+          case 4: return V7('Watermelon', `<path d="M16 22 A34 34 0 0 0 84 22Z" fill="#2c8a2c"/><path d="M21 22 A29 29 0 0 0 79 22Z" fill="#e8f4c0"/><path d="M24 22 A26 26 0 0 0 76 22Z" fill="#ec3a4a"/>${[[38, 30], [50, 36], [62, 30], [44, 40], [56, 40], [50, 27]].map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="1.6" ry="2.6" fill="#1a1a1a"/>`).join('')}`);
+          case 5: return V7('Bell', `<path d="M50 10 C34 10 30 26 30 42 L24 52 L76 52 L70 42 C70 26 66 10 50 10Z" fill="#f2c14e" stroke="#9a6b00" stroke-width="2"/><path d="M38 20 Q36 32 36 44" stroke="#fff3c0" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="57" r="6" fill="#c88a10" stroke="#9a6b00" stroke-width="1.5"/><circle cx="50" cy="9" r="3.5" fill="#9a6b00"/>`);
+          case 6: return V7('Wild pineapple', `<path d="M50 20 L40 2 L48 10 L50 0 L52 10 L60 2Z" fill="#2c9a3a"/><ellipse cx="50" cy="42" rx="18" ry="24" fill="#f6c42e" stroke="#b07a00" stroke-width="2"/>${[0, 1, 2, 3, 4].map(k => `<path d="M${34 + k * 8} 22 L${26 + k * 8} 62 M${26 + k * 8} 22 L${34 + k * 8} 62" stroke="#c48a00" stroke-width="1.2" opacity=".7"/>`).join('')}${WILDTXT(47)}`);
+          default: return V7('Blank', '');
+        }
+      } },
+    pharaoh: { name: "Pharaoh's Gold", blurb: 'Scarabs, pyramids and the sun disk', names: ['', 'ankh', 'scarab', 'eye', 'pyramid', 'pharaoh', 'sun disk'], group: 'relics',
+      pays: ['3 sun disks', '3 pharaohs', '3 pyramids', '3 eyes', '3 scarabs', 'Any 3 relics', '3 ankhs', '2 ankhs', '1 ankh'],
+      sym: s => {
+        switch (s) {
+          case 1: return V7('Ankh', `<ellipse cx="50" cy="20" rx="9" ry="12" fill="none" stroke="#d4a640" stroke-width="6"/><path d="M50 31 V64 M33 36 H67" stroke="#d4a640" stroke-width="7" stroke-linecap="round"/><path d="M48 33 V60" stroke="#fff2b8" stroke-width="1.5" opacity=".7"/>`);
+          case 2: return V7('Scarab', `<ellipse cx="50" cy="42" rx="17" ry="20" fill="#127a7a"/><path d="M50 24 V62" stroke="#063a3a" stroke-width="2"/><ellipse cx="50" cy="20" rx="9" ry="6" fill="#0a5050"/>${[-1, 1].map(d => `<path d="M${50 + d * 15} 34 l${d * 12} -8 M${50 + d * 17} 44 l${d * 13} 0 M${50 + d * 15} 54 l${d * 12} 8" stroke="#063a3a" stroke-width="3" stroke-linecap="round"/>`).join('')}<ellipse cx="44" cy="36" rx="4" ry="8" fill="#3ec0c0" opacity=".6"/><circle cx="50" cy="12" r="5" fill="#e3b52a"/>`);
+          case 3: return V7('Eye', `<path d="M14 34 Q50 4 86 34 Q50 52 14 34Z" fill="#fff8e6" stroke="#1a3a8a" stroke-width="4"/><circle cx="50" cy="32" r="10" fill="#1a3a8a"/><circle cx="47" cy="29" r="3" fill="#fff"/><path d="M48 46 Q46 60 36 62 M58 44 Q66 54 76 52" stroke="#1a3a8a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M14 22 Q50 0 86 20" stroke="#1a3a8a" stroke-width="3" fill="none"/>`);
+          case 4: return V7('Pyramid', `<path d="M50 6 L86 62 L14 62Z" fill="#e3b52a"/><path d="M50 6 L86 62 L56 62Z" fill="#a8781a"/>${[20, 34, 48].map(y => `<path d="M${50 - (y - 6) * .64} ${y} H${50 + (y - 6) * .64}" stroke="#8a5a10" stroke-width="1.2" opacity=".6"/>`).join('')}<path d="M44 16 H56" stroke="#fff4c0" stroke-width="2"/>`);
+          case 5: return V7('Pharaoh', `<path d="M50 4 C28 6 22 22 18 64 H82 C78 22 72 6 50 4Z" fill="#e3b52a"/>${[16, 26, 36, 46, 56].map(y => `<path d="M20 ${y + 4} H80" stroke="#1a3a8a" stroke-width="4" opacity=".9"/>`).join('')}<path d="M36 22 Q36 52 50 56 Q64 52 64 22Z" fill="#d89a5a"/><path d="M40 32 h7 M53 32 h7" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/><path d="M47 54 L50 66 L53 54Z" fill="#1a3a8a"/><path d="M45 44 Q50 47 55 44" stroke="#7a3a1a" stroke-width="2" fill="none"/><path d="M50 4 V12" stroke="#c4122f" stroke-width="4"/>`);
+          case 6: return V7('Wild sun disk', `<path d="M4 34 Q20 18 40 28 L40 40 Q20 34 4 34Z M96 34 Q80 18 60 28 L60 40 Q80 34 96 34Z" fill="#e3b52a" stroke="#8a5a10" stroke-width="1.5"/><circle cx="50" cy="34" r="17" fill="#e8401a" stroke="#ffd76a" stroke-width="3"/><circle cx="44" cy="28" r="5" fill="#ff9a6a" opacity=".7"/>${WILDTXT(38)}`);
+          default: return V7('Blank', '');
+        }
+      } },
+    deep: { name: 'Deep Blue', blurb: 'Shells, anchors and a sunken chest', names: ['', 'shell', 'fish', 'jellyfish', 'anchor', 'treasure chest', 'pearl'], group: 'sea charms',
+      pays: ['3 pearls', '3 treasure chests', '3 anchors', '3 jellyfish', '3 fish', 'Any 3 sea charms', '3 shells', '2 shells', '1 shell'],
+      sym: s => {
+        switch (s) {
+          case 1: return V7('Shell', `<path d="M50 60 L22 28 Q50 2 78 28Z" fill="#f49ab0" stroke="#c4506a" stroke-width="2"/>${[-3, -2, -1, 0, 1, 2, 3].map(k => `<path d="M50 60 L${50 + k * 8.5} ${18 + Math.abs(k) * 2.5}" stroke="#c4506a" stroke-width="1.5"/>`).join('')}<path d="M42 60 H58 L54 66 H46Z" fill="#e07a94"/>`);
+          case 2: return V7('Fish', `<path d="M22 36 Q44 12 70 36 Q44 60 22 36Z" fill="#ff8a1a"/><path d="M68 36 L88 20 L84 36 L88 52Z" fill="#e85a00"/><path d="M38 24 Q42 36 38 48 M50 22 Q54 36 50 50" stroke="#fff" stroke-width="3" fill="none"/><circle cx="30" cy="33" r="3.5" fill="#1a1a1a"/><circle cx="29" cy="32" r="1" fill="#fff"/>`);
+          case 3: return V7('Jellyfish', `<path d="M24 34 Q24 6 50 6 Q76 6 76 34 Q63 30 50 34 Q37 30 24 34Z" fill="#b06ae8" opacity=".95"/><ellipse cx="42" cy="18" rx="7" ry="5" fill="#e6c4ff" opacity=".7"/>${[30, 40, 50, 60, 70].map((x, k) => `<path d="M${x} 33 q${k % 2 ? 5 : -5} 8 0 16 q${k % 2 ? -5 : 5} 8 0 16" stroke="#c48aff" stroke-width="2.4" fill="none" stroke-linecap="round"/>`).join('')}`);
+          case 4: return V7('Anchor', `<circle cx="50" cy="11" r="6" fill="none" stroke="#5a6a7a" stroke-width="4"/><path d="M50 17 V62 M36 26 H64 M22 44 Q26 62 50 62 Q74 62 78 44" stroke="#5a6a7a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M18 40 L22 48 L28 42 M82 40 L78 48 L72 42" stroke="#5a6a7a" stroke-width="4" fill="none"/><path d="M48 20 V58" stroke="#c4d0dc" stroke-width="1.5"/>`);
+          case 5: return V7('Treasure chest', `<rect x="20" y="30" width="60" height="32" rx="3" fill="#8a4a1a" stroke="#3a1a08" stroke-width="2"/><path d="M20 30 Q20 10 50 10 Q80 10 80 30Z" fill="#a85a22" stroke="#3a1a08" stroke-width="2"/><path d="M20 30 H80 M33 12 V62 M67 12 V62" stroke="#e3b52a" stroke-width="4"/><rect x="45" y="28" width="10" height="12" rx="2" fill="#e3b52a"/>${[[28, 8], [40, 5], [60, 6], [72, 9]].map(([x, y]) => `<circle cx="${x}" cy="${y + 2}" r="4" fill="#ffd76a" stroke="#9a6b00"/>`).join('')}`);
+          case 6: return V7('Wild pearl', `<path d="M14 46 Q50 70 86 46 Q50 56 14 46Z" fill="#6a8ab0" stroke="#3a5a80" stroke-width="2"/><path d="M14 44 Q24 8 50 6 Q76 8 86 44 Q50 34 14 44Z" fill="#8aaad0" stroke="#3a5a80" stroke-width="2"/><circle cx="50" cy="44" r="13" fill="#fdfbf4" stroke="#c8c0b0"/><circle cx="45" cy="39" r="4" fill="#fff"/>${WILDTXT(28, '#fff')}`);
+          default: return V7('Blank', '');
+        }
+      } },
+    cosmic: { name: 'Cosmic Cadet', blurb: 'Rockets, planets and a supernova', names: ['', 'moon', 'planet', 'comet', 'rocket', 'UFO', 'supernova'], group: 'starships',
+      pays: ['3 supernovas', '3 UFOs', '3 rockets', '3 comets', '3 planets', 'Any 3 starships', '3 moons', '2 moons', '1 moon'],
+      sym: s => {
+        switch (s) {
+          case 1: return V7('Moon', `<path d="M58 8 A27 27 0 1 0 64 60 A22 22 0 1 1 58 8Z" fill="#ffe680" stroke="#c8a020" stroke-width="2"/><circle cx="42" cy="44" r="3" fill="#e8c850"/><circle cx="38" cy="28" r="2" fill="#e8c850"/>`);
+          case 2: return V7('Planet', `<circle cx="50" cy="35" r="19" fill="#f2862a"/><path d="M33 30 Q50 26 67 30 M32 40 Q50 36 68 40" stroke="#c8541a" stroke-width="3" fill="none"/><ellipse cx="50" cy="36" rx="38" ry="9" fill="none" stroke="#ffd2a0" stroke-width="3.5" transform="rotate(-14 50 36)"/><path d="M33 36 A19 19 0 0 1 67 34" fill="none" stroke="#f2862a" stroke-width="5" transform="rotate(-14 50 36)"/>`);
+          case 3: return V7('Comet', `${[0, 1, 2].map(k => `<path d="M60 ${28 + k * 6} L${12 + k * 6} ${8 + k * 14}" stroke="${['#7fe3ff', '#c4f4ff', '#3ab0e8'][k]}" stroke-width="${6 - k}" stroke-linecap="round" opacity=".85"/>`).join('')}<circle cx="64" cy="36" r="13" fill="#e6faff" stroke="#7fe3ff" stroke-width="3"/><circle cx="60" cy="32" r="4" fill="#fff"/>`);
+          case 4: return V7('Rocket', `<path d="M50 4 Q64 18 62 50 H38 Q36 18 50 4Z" fill="#f0f0f4" stroke="#6a6a7a" stroke-width="1.5"/><path d="M38 38 L26 56 L38 52Z M62 38 L74 56 L62 52Z" fill="#e8283a"/><circle cx="50" cy="26" r="6" fill="#3ab0e8" stroke="#6a6a7a" stroke-width="2"/><path d="M42 50 Q50 70 58 50Z" fill="#ffb02a"/><path d="M46 50 Q50 62 54 50Z" fill="#fff36e"/>`);
+          case 5: return V7('UFO', `<path d="M36 30 Q36 12 50 12 Q64 12 64 30Z" fill="#7cf0a6" opacity=".9"/><ellipse cx="50" cy="34" rx="34" ry="10" fill="#b8c0d0" stroke="#5a6070" stroke-width="2"/><ellipse cx="50" cy="31" rx="22" ry="4" fill="#e6eaf4"/>${[24, 37, 50, 63, 76].map(x => `<circle cx="${x}" cy="37" r="2.4" fill="#ffd76a"/>`).join('')}<path d="M40 44 L30 66 H70 L60 44Z" fill="#7cf0a6" opacity=".25"/>`);
+          case 6: return V7('Wild supernova', `<path d="${Array.from({ length: 16 }, (_, k) => { const r = k % 2 ? 13 : 32, a = k * Math.PI / 8; return (k ? 'L' : 'M') + (50 + r * Math.cos(a)).toFixed(1) + ' ' + (35 + r * Math.sin(a) * .95).toFixed(1); }).join(' ')}Z" fill="#ff4ad0" stroke="#ffe0f6" stroke-width="1.5"/><circle cx="50" cy="35" r="11" fill="#fff36e"/>${WILDTXT(39, '#fff')}`);
+          default: return V7('Blank', '');
+        }
+      } }
+  };
+  const TH = () => THEMES[O.theme] || THEMES.classic;
+  const sym = s => TH().sym(s);
   function css() {
     return `<style>
-      .sl.felt{background:radial-gradient(ellipse at 50% 0%,#5a1424,#22060d 75%);box-shadow:inset 0 0 0 10px #1a1a1f,inset 0 0 0 12px #c9a54a,inset 0 6px 30px rgba(0,0,0,.6),var(--shadow)}
-      .sl .sign{text-align:center;font-family:var(--sign);font-size:clamp(1.4rem,4vw,2.4rem);color:#ffd76a;text-shadow:0 0 8px rgba(255,215,106,.7),0 0 22px rgba(255,120,60,.5);letter-spacing:.08em;margin-bottom:10px}
-      .sl .window{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:520px;margin:0 auto;padding:12px;border-radius:16px;background:#111;box-shadow:inset 0 0 0 3px #c9a54a,inset 0 0 30px rgba(0,0,0,.9)}
-      .sl .reel{position:relative;height:calc(var(--sh) * 3);overflow:hidden;border-radius:8px;background:linear-gradient(#cfcac0,#fbfaf6 20%,#fff 50%,#fbfaf6 80%,#cfcac0)}
+      .sl.felt{--cab1:#5a1424;--cab2:#22060d;--trim:#c9a54a;--signc:#ffd76a;--glow:rgba(255,120,60,.5);--reelbg:#fbfaf6;--reeledge:#cfcac0;--payline:rgba(196,18,47,.8);--bulb:#ffd76a;
+        background:radial-gradient(ellipse at 50% 0%,var(--cab1),var(--cab2) 75%);box-shadow:inset 0 0 0 10px #1a1a1f,inset 0 0 0 12px var(--trim),inset 0 6px 30px rgba(0,0,0,.6),var(--shadow);transition:background .4s}
+      .sl.th-fruit{--cab1:#ff6a3d;--cab2:#6a0f3e;--trim:#ff9ad5;--signc:#fff36e;--glow:rgba(255,80,160,.6);--reelbg:#fff8ec;--reeledge:#f0c8a8;--payline:rgba(230,30,120,.85);--bulb:#fff36e}
+      .sl.th-pharaoh{--cab1:#1f4a8a;--cab2:#060f24;--trim:#e3b52a;--signc:#ffd76a;--glow:rgba(227,181,42,.6);--reelbg:#f6e8c4;--reeledge:#c8a868;--payline:rgba(26,58,138,.85);--bulb:#ffe9a0}
+      .sl.th-deep{--cab1:#0e7a9a;--cab2:#021626;--trim:#7fe3ff;--signc:#c8f6ff;--glow:rgba(60,200,255,.6);--reelbg:#e8f8fc;--reeledge:#9ccfdc;--payline:rgba(255,120,40,.85);--bulb:#c8f6ff}
+      .sl.th-cosmic{--cab1:#4a1a8a;--cab2:#05030f;--trim:#c48aff;--signc:#f0b8ff;--glow:rgba(255,74,208,.6);--reelbg:#1c1640;--reeledge:#0a0820;--payline:rgba(255,74,208,.9);--bulb:#7fe3ff}
+      .sl.th-cosmic::before{content:"";position:absolute;inset:12px;border-radius:16px;pointer-events:none;background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 80%,#fff,transparent),radial-gradient(1.5px 1.5px at 70% 30%,#fff,transparent),radial-gradient(1px 1px at 85% 70%,#fff,transparent),radial-gradient(1px 1px at 50% 55%,#cfe,transparent),radial-gradient(1.5px 1.5px at 20% 60%,#fde,transparent);opacity:.8}
+      .sl .sign{position:relative;text-align:center;font-family:var(--sign);font-size:clamp(1.4rem,4vw,2.4rem);color:var(--signc);text-shadow:0 0 8px var(--signc),0 0 22px var(--glow);letter-spacing:.08em;margin:0 auto 12px;padding:16px 24px;max-width:520px;border-radius:14px;background:rgba(0,0,0,.35);box-shadow:inset 0 0 0 2px var(--trim)}
+      .sl .bulbs{position:absolute;inset:2px 6px;pointer-events:none;background:radial-gradient(circle at 8px 5px,var(--bulb) 0 2.6px,transparent 3.4px) 0 0/16px 10px repeat-x,radial-gradient(circle at 8px 5px,var(--bulb) 0 2.6px,transparent 3.4px) 0 100%/16px 10px repeat-x;animation:slBulb .8s steps(2) infinite;filter:drop-shadow(0 0 3px var(--bulb))}
+      .sl.spinning .bulbs{animation-duration:.25s}
+      @keyframes slBulb{to{background-position:8px 0,8px 100%}}
+      .sl .cab{position:relative;max-width:580px;margin:0 auto;padding-right:52px}
+      .sl .window{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:12px;border-radius:16px;background:linear-gradient(#2a2a30,#0c0c10);box-shadow:inset 0 0 0 3px var(--trim),inset 0 0 30px rgba(0,0,0,.9),0 10px 24px rgba(0,0,0,.5)}
+      .sl .reel{position:relative;height:calc(var(--sh) * 3);overflow:hidden;border-radius:8px;background:linear-gradient(var(--reeledge),var(--reelbg) 22%,var(--reelbg) 78%,var(--reeledge))}
+      .sl .reel::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0) 26%,rgba(255,255,255,.18) 44%,rgba(255,255,255,0) 56%,rgba(0,0,0,0) 74%,rgba(0,0,0,.55)),linear-gradient(90deg,rgba(0,0,0,.25),transparent 12%,transparent 88%,rgba(0,0,0,.25))}
       .sl .strip{position:absolute;left:0;right:0;top:0;will-change:transform}
+      .sl.spinning .strip{filter:blur(.6px)}
       .sl .strip div{height:var(--sh);display:grid;place-items:center}
-      .sl .strip svg{width:78%;height:86%}
-      .sl .line{position:absolute;left:4px;right:4px;top:50%;height:3px;margin-top:-1.5px;background:rgba(196,18,47,.75);z-index:2;pointer-events:none;box-shadow:0 0 6px rgba(196,18,47,.6)}
-      .sl .window.won .line{background:#ffd76a;box-shadow:0 0 12px #ffd76a}
-      .sl .ptab{width:100%;max-width:520px;margin:16px auto 0;border-collapse:collapse;font-family:var(--mono);font-size:.82rem;color:#ffe36e}
-      .sl .ptab td{padding:.15rem .5rem;border-bottom:1px solid rgba(201,165,74,.3)}
+      .sl .strip svg{width:78%;height:86%;filter:drop-shadow(0 2px 1px rgba(0,0,0,.3))}
+      .sl .line{position:absolute;left:4px;right:4px;top:50%;height:3px;margin-top:-1.5px;background:var(--payline);z-index:2;pointer-events:none;box-shadow:0 0 6px var(--payline)}
+      .sl .window.won .line{background:#ffd76a;box-shadow:0 0 12px #ffd76a;animation:slWin .3s 6 alternate}
+      @keyframes slWin{to{opacity:.3}}
+      .sl .lever{position:absolute;right:0;top:8%;width:44px;height:84%;border:0;padding:0;background:transparent;cursor:pointer}
+      .sl .lever .base{position:absolute;left:6px;bottom:0;width:32px;height:46px;border-radius:8px;background:linear-gradient(90deg,#55555e,#d8d8e0 40%,#7a7a84);box-shadow:0 4px 10px rgba(0,0,0,.5)}
+      .sl .lever .arm{position:absolute;left:17px;bottom:30px;width:10px;height:calc(100% - 52px);border-radius:5px;background:linear-gradient(90deg,#6a6a74,#f4f4f8 45%,#8a8a94);transform-origin:50% 100%;transition:transform .18s ease-in}
+      .sl .lever .knob{position:absolute;left:50%;top:-16px;width:30px;height:30px;margin-left:-15px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff9a9a,#d4142f 50%,#6a0010);box-shadow:0 4px 8px rgba(0,0,0,.5)}
+      .sl .lever.pull .arm{transform:scaleY(-.25)}
+      .sl .lever:disabled{cursor:default}
+      .sl .themes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+      .sl .themes button{border:1px solid var(--line);background:var(--well);border-radius:10px;padding:4px 2px;display:grid;justify-items:center;gap:2px;font-size:.66rem;font-weight:700;line-height:1.1;text-align:center}
+      .sl .themes button svg{width:36px;height:26px}
+      .sl .themes button.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent);background:var(--panel)}
+      .sl .themes button:disabled{opacity:.45}
+      .sl .ptab{width:100%;max-width:520px;margin:16px auto 0;border-collapse:collapse;font-family:var(--mono);font-size:.82rem;color:var(--signc)}
+      .sl .ptab td{padding:.15rem .5rem;border-bottom:1px solid color-mix(in srgb,var(--trim) 35%,transparent)}
       .sl .ptab td:first-child{font-family:var(--body);font-weight:700;color:#fff}
       .sl .ptab td.r{text-align:right}
-      .sl .ptab td.cur{color:#fff;background:rgba(196,18,47,.5)}
+      .sl .ptab td.cur{color:#fff;background:color-mix(in srgb,var(--payline) 60%,transparent)}
       .sl .ptab tr.hit td{background:#ffe36e;color:#22060d}
       .sl .ptab .mini{display:inline-flex;gap:2px;vertical-align:middle}
-      .sl .ptab .mini svg{width:26px;height:18px;background:#fbfaf6;border-radius:3px}
+      .sl .ptab .mini svg{width:26px;height:18px;background:var(--reelbg);border-radius:3px}
+      @media (max-width:560px){.sl .cab{padding-right:40px}.sl .lever{width:36px}.sl .lever .base{left:4px;width:28px}.sl .lever .arm{left:13px}}
     </style>`;
   }
   function mount(view) {
     alive = true; ctx++;
     view.innerHTML = css() + `<div class="game">
-      <div class="felt sl" id="felt">
-        <div class="sign">Lucky Strip</div>
-        <div class="window" id="win" style="--sh:clamp(70px,13vw,110px)"><div class="line"></div>${[0, 1, 2].map(i => `<div class="reel"><div class="strip" id="strip${i}"></div></div>`).join('')}</div>
+      <div class="felt sl th-${O.theme}" id="felt">
+        <div class="sign"><span class="bulbs"></span><span id="signTxt">${TH().name}</span></div>
+        <div class="cab"><div class="window" id="win" style="--sh:clamp(70px,13vw,110px)"><div class="line"></div>${[0, 1, 2].map(i => `<div class="reel"><div class="strip" id="strip${i}"></div></div>`).join('')}</div>
+          <button class="lever" id="lever" aria-label="Pull the lever to spin"><span class="base"></span><span class="arm"><span class="knob"></span></span></button></div>
         <table class="ptab" id="ptab"></table>
       </div>
       <aside class="rail">
         <div class="panel card-p">
           <div class="status" id="status"></div>
-          <div class="field"><span class="lab">Coins per spin (3 coins pays 5,000 for three stars)</span>${seg('coins', [[1, '1'], [2, '2'], [3, '3 (max)']], O)}</div>
+          <div class="field sl"><span class="lab">Machine</span><div class="themes" id="themes">${Object.entries(THEMES).map(([k, t]) => `<button data-th="${k}" class="${O.theme === k ? 'on' : ''}" title="${t.blurb}" aria-label="${t.name}: ${t.blurb}">${t.sym(5).replace('<svg ', '<svg aria-hidden="true" ')}<span>${t.name}</span></button>`).join('')}</div></div>
+          <div class="field"><span class="lab" id="coinLab">Coins per spin (3 coins pays 5,000 for three ${TH().names[6]}s)</span>${seg('coins', [[1, '1'], [2, '2'], [3, '3 (max)']], O)}</div>
           <div class="field"><span class="lab">Coin value</span>${seg('denom', DENOMS, O)}</div>
           <div class="row"><span id="betTxt" class="num muted"></span><span class="grow"></span><button class="btn primary big" id="spinBtn">Spin <kbd>Space</kbd></button></div>
           <div id="coach"></div>
@@ -3206,6 +3425,10 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
       </aside></div>`;
     bindSeg($('.rail', view), O, () => { store.set('sl.opts', O); render(); });
     $('#spinBtn').onclick = spin;
+    $('#lever').onclick = spin;
+    $('#themes').onclick = e => { const b = e.target.closest('[data-th]'); if (!b || spinning) return; O.theme = b.dataset.th; store.set('sl.opts', O); Snd.chip();
+      $$('#themes button').forEach(x => x.classList.toggle('on', x === b)); const f = $('#felt'); f.className = 'felt sl th-' + O.theme; $('#signTxt').textContent = TH().name;
+      $('#coinLab').textContent = `Coins per spin (3 coins pays 5,000 for three ${TH().names[6]}s)`; for (let i = 0; i < 3; i++) buildStrip(i, pos[i], pos[i], 0); render(); };
     for (let i = 0; i < 3; i++) buildStrip(i, pos[i], pos[i], 0);
     render();
   }
@@ -3223,7 +3446,8 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
     const bet = O.coins * O.denom;
     if (!W.take(bet)) { toast('Not enough chips for this spin. Lower the bet or visit the cashier.'); return; }
     const my = ctx;
-    spinning = true; lastRow = -1; lastPay = 0; hideFeltMsg($('#felt')); $('#win').classList.remove('won'); Snd.chip(); render();
+    spinning = true; lastRow = -1; lastPay = 0; hideFeltMsg($('#felt')); $('#win').classList.remove('won'); $('#felt').classList.add('spinning'); Snd.chip(); render();
+    const lv = $('#lever'); lv.classList.add('pull'); setTimeout(() => lv && lv.classList.remove('pull'), 260);
     const strips = V.slotStrips(), stops = V.slotSpin(), result = stops.map((s, i) => strips[i][s]);
     const h = cellH(), base = [1100, 1500, 1900].map(t => t * SPEED());
     const anims = result.map((s, i) => {
@@ -3246,30 +3470,31 @@ function artCards(list) { return `<svg viewBox="0 0 200 110">${list.map((c, i) =
     let pay = r.pay * O.coins * O.denom;
     if (r.row === 0 && O.coins === 3) pay = 5000 * O.denom;
     W.give(pay); record('slots', bet, pay - bet, -bet * (1 - RET().ret));
-    lastRow = r.row; lastPay = pay; spinning = false;
-    if (pay) { $('#win').classList.add('won'); pay >= bet * 25 ? Snd.big() : Snd.win(); feltMsg($('#felt'), V.SLOT_PAYS[r.row][0].replace(/^\d /, m => m), 'You win ' + money(pay), 'win', 2200); }
+    lastRow = r.row; lastPay = pay; spinning = false; $('#felt').classList.remove('spinning');
+    if (pay) { $('#win').classList.add('won'); pay >= bet * 25 ? Snd.big() : Snd.win(); feltMsg($('#felt'), TH().pays[r.row], 'You win ' + money(pay), 'win', 2200); }
     render();
   }
   function render() {
     if (!alive) return;
     const rows = V.SLOT_PAYS, icons = [[6, 6, 6], [5, 5, 5], [4, 4, 4], [3, 3, 3], [2, 2, 2], [2, 3, 4], [1, 1, 1], [1, 1, 0], [1, 0, 0]];
-    $('#ptab').innerHTML = rows.map((r, i) => `<tr class="${lastRow === i && !spinning ? 'hit' : ''}"><td><span class="mini">${icons[i].map(s => sym(s)).join('')}</span> ${r[0]}</td>${[1, 2, 3].map(c => `<td class="r ${c === O.coins ? 'cur' : ''}">${(i === 0 && c === 3 ? 5000 : r[1] * c).toLocaleString()}</td>`).join('')}</tr>`).join('');
+    $('#ptab').innerHTML = rows.map((r, i) => `<tr class="${lastRow === i && !spinning ? 'hit' : ''}"><td><span class="mini">${icons[i].map(s => sym(s)).join('')}</span> ${TH().pays[i]}</td>${[1, 2, 3].map(c => `<td class="r ${c === O.coins ? 'cur' : ''}">${(i === 0 && c === 3 ? 5000 : r[1] * c).toLocaleString()}</td>`).join('')}</tr>`).join('');
     const ret = RET();
     $('#betTxt').textContent = `Bet ${O.coins} × ${money(O.denom)} = ${money(O.coins * O.denom)}`;
     $('#spinBtn').disabled = spinning;
-    $$('.rail .seg button').forEach(b => b.disabled = spinning);
+    $$('.rail .seg button, #themes button').forEach(b => b.disabled = spinning); $('#lever').disabled = spinning;
     $('#status').textContent = spinning ? 'Spinning…' : lastPay ? 'Winner! You won ' + money(lastPay) + '.' : 'Press Spin.';
     $('#edgePill').innerHTML = `<span class="pill edge">Return ${(ret.ret * 100).toFixed(2)}%</span>`;
-    $('#about').innerHTML = `Three weighted reels, one payline. The star is wild for sevens and bars. Every spin is independent: a machine is never “due”. Exact figures for this machine: return <b>${(ret.ret * 100).toFixed(2)}%</b> at ${O.coins} coin${O.coins > 1 ? 's' : ''}, a win on <b>${(ret.hit * 100).toFixed(1)}%</b> of spins, and three stars about <b>1 in ${Math.round(1 / ret.jackpot).toLocaleString()}</b>.`;
+    $('#about').innerHTML = `<b>${TH().name}:</b> three weighted reels, one payline. The ${TH().names[6]} is wild for ${TH().names[5]}s and every one of the ${TH().group}. All five machines share the same reels and paytable; only the pictures change. Every spin is independent: a machine is never “due”. Exact figures for this machine: return <b>${(ret.ret * 100).toFixed(2)}%</b> at ${O.coins} coin${O.coins > 1 ? 's' : ''}, a win on <b>${(ret.hit * 100).toFixed(1)}%</b> of spins, and three ${TH().names[6]}s about <b>1 in ${Math.round(1 / ret.jackpot).toLocaleString()}</b>.`;
     $('#coach').innerHTML = S.coach ? `<div class="coach"><b>Coach:</b> slots have no strategy. ${O.coins < 3 ? 'Playing 3 coins raises the jackpot to 5,000 and the return slightly.' : 'You are on max coins, the best return this machine offers.'} A ${(100 - ret.ret * 100).toFixed(1)}% edge means about ${money(Math.round(O.coins * O.denom * (1 - ret.ret) * 600))} lost per hour at 600 spins.</div>` : '';
   }
   function key(e) { if ((e.key === ' ' || e.key === 'Enter') && !e.target.closest('button')) { spin(); e.preventDefault(); } }
   register({
-    id: 'slots', name: 'Slots', blurb: 'A classic three-reel machine with a wild star. Every symbol weight and the exact return are on show.',
+    id: 'slots', name: 'Slots', blurb: 'Five three-reel machines with a wild symbol and a lever to pull. Every symbol weight and the exact return are on show.',
     edge: '6.0–6.4%', limits: '$1 – $300 a spin',
     art: () => `<svg viewBox="0 0 180 90"><rect x="4" y="6" width="172" height="78" rx="10" fill="#22060d" stroke="#c9a54a" stroke-width="3"/>${[5, 5, 6].map((s, i) => `<rect x="${14 + i * 54}" y="16" width="48" height="58" rx="5" fill="#fbfaf6"/><g transform="translate(${16 + i * 54} 26)">${sym(s).replace('<svg ', '<svg width="44" height="36" ')}</g>`).join('')}<rect x="10" y="44" width="160" height="2" fill="#c4122f"/></svg>`,
     mount, unmount, key, refresh: render, busy: () => spinning,
-    how: () => `<p>Choose coins and coin value, then Spin. Wins are paid for the symbols that stop on the red payline.</p>
+    how: () => `<p>Pick a machine, choose coins and coin value, then Spin (or pull the lever). Wins are paid for the symbols that stop on the payline.</p>
+      <p>There are five machines: ${Object.values(THEMES).map(t => `<b>${t.name}</b> (${t.blurb.toLowerCase()})`).join(', ')}. They all share the same reels, weights and paytable, so the odds are identical; only the pictures and the cabinet change. The paytable below uses the classic symbols.</p>
       <h3>Paytable (per coin)</h3><div class="tbl-wrap"><table class="pay"><tr><th>Line</th><th class="r">1 coin</th><th class="r">2 coins</th><th class="r">3 coins</th></tr>
       ${V.SLOT_PAYS.map((r, i) => `<tr><td>${r[0]}</td><td class="r">${r[1]}</td><td class="r">${r[1] * 2}</td><td class="r">${i === 0 ? 5000 : r[1] * 3}</td></tr>`).join('')}</table></div>
       <p>The wild star substitutes for sevens and any bar, but not for cherries. “Any 3 bars” means any mix of single, double and triple bars.</p>
